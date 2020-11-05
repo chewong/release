@@ -20,6 +20,7 @@ IMAGE_VERSION ?= v1.15.3-1
 CONFIG ?= go1.15
 
 # Build args
+BASEIMAGE?=golang
 GO_VERSION?=1.15.3
 PROTOBUF_VERSION?=3.0.2
 ETCD_VERSION?=v3.4.13
@@ -31,6 +32,7 @@ ETCD_VERSION?=v3.4.13
 #       - https://github.com/kubernetes/kubernetes/issues/75114
 PLATFORMS ?= linux/amd64 #linux/arm linux/arm64 linux/ppc64le linux/s390x
 
-BUILD_ARGS = --build-arg=GO_VERSION=$(GO_VERSION) \
+BUILD_ARGS = --build-arg=BASEIMAGE=$(BASEIMAGE) \
+             --build-arg=GO_VERSION=$(GO_VERSION) \
              --build-arg=PROTOBUF_VERSION=$(PROTOBUF_VERSION) \
              --build-arg=ETCD_VERSION=$(ETCD_VERSION)
